@@ -18,7 +18,7 @@ class PostImageViewController: UIViewController {
         layout.scrollDirection = .horizontal
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.translatesAutoresizingMaskIntoConstraints = false
-        cv.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "Filtercell")
+        cv.register(CustomCell.self, forCellWithReuseIdentifier: "Filtercell")
         return cv
     }()
     
@@ -31,11 +31,13 @@ class PostImageViewController: UIViewController {
         collectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 40).isActive = true
         collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40).isActive = true
-        collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40).isActive = true
+        collectionView.heightAnchor.constraint(equalTo: collectionView.widthAnchor, multiplier: 0.5).isActive = true
         collectionView.delegate = self
         collectionView.dataSource = self
-        
     }
+    @IBAction func editButtonTapped() -> Void {
+           print("Hello Edit Button")
+           }
 }
 
 extension PostImageViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
@@ -45,12 +47,17 @@ extension PostImageViewController: UICollectionViewDelegateFlowLayout, UICollect
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return 20
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Filtercell", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Filtercell", for: indexPath) as! CustomCell
+        let editButton = UIButton(frame: CGRect(x: 0, y: 20, width: 40,height: 40))
+        editButton.setImage(UIImage(named: "editButton.png"), for: UIControl.State.normal)
+        editButton.addTarget(self, action: #selector(editButtonTapped), for: UIControl.Event.touchUpInside)
         cell.backgroundColor = .red
+        cell.addSubview(editButton)
         return cell
     }
 }
+

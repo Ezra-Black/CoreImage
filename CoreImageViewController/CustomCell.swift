@@ -10,12 +10,12 @@ import UIKit
 
 class CustomCell: UICollectionViewCell {
     
-    fileprivate let button: UIButton = {
-        let buttonToUse = UIButton()
-        buttonToUse.translatesAutoresizingMaskIntoConstraints = false
-        buttonToUse.clipsToBounds = true
-        return buttonToUse
-    }
+//    fileprivate let button: UIButton = {
+//        let buttonToUse = UIButton()
+//        buttonToUse.translatesAutoresizingMaskIntoConstraints = false
+//        buttonToUse.clipsToBounds = true
+//        return buttonToUse
+//    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)

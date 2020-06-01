@@ -17,6 +17,7 @@
 		7F1B3EB724859B7E00108222 /* CoreImageViewControllerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1B3EB624859B7E00108222 /* CoreImageViewControllerUITests.swift */; };
 		7F1B3EC624859DA000108222 /* PostImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1B3EC524859DA000108222 /* PostImageViewController.swift */; };
 		7F1B3EC92485A13F00108222 /* UIImage+Scaling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1B3EC82485A13F00108222 /* UIImage+Scaling.swift */; };
+		7F1B3ECB2485B07400108222 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1B3ECA2485B07400108222 /* CustomCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		7F1B3EB824859B7E00108222 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7F1B3EC524859DA000108222 /* PostImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostImageViewController.swift; sourceTree = "<group>"; };
 		7F1B3EC82485A13F00108222 /* UIImage+Scaling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Scaling.swift"; sourceTree = "<group>"; };
+		7F1B3ECA2485B07400108222 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				7F1B3EC524859DA000108222 /* PostImageViewController.swift */,
+				7F1B3ECA2485B07400108222 /* CustomCell.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -285,6 +288,7 @@
 				7F1B3EC92485A13F00108222 /* UIImage+Scaling.swift in Sources */,
 				7F1B3E9224859B7D00108222 /* AppDelegate.swift in Sources */,
 				7F1B3E9424859B7D00108222 /* SceneDelegate.swift in Sources */,
+				7F1B3ECB2485B07400108222 /* CustomCell.swift in Sources */,
 				7F1B3E9C24859B7D00108222 /* CoreImageViewController.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
