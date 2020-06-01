@@ -34,10 +34,14 @@ class PostImageViewController: UIViewController {
         collectionView.heightAnchor.constraint(equalTo: collectionView.widthAnchor, multiplier: 0.5).isActive = true
         collectionView.delegate = self
         collectionView.dataSource = self
+        collectionView.delaysContentTouches = false  // <- Makes buttons always press
     }
-    @IBAction func editButtonTapped() -> Void {
-           print("Hello Edit Button")
-           }
+    
+    @IBAction func editButtonTapped(button: UIButton) -> Void {
+        
+        // TODO: get cell for button being tapped by comparing or using a delegate protocol to send a message
+        print("Hello Edit Button")
+    }
 }
 
 extension PostImageViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
@@ -52,12 +56,11 @@ extension PostImageViewController: UICollectionViewDelegateFlowLayout, UICollect
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Filtercell", for: indexPath) as! CustomCell
-        let editButton = UIButton(frame: CGRect(x: 0, y: 20, width: 40,height: 40))
-        editButton.setImage(UIImage(named: "editButton.png"), for: UIControl.State.normal)
-        editButton.addTarget(self, action: #selector(editButtonTapped), for: UIControl.Event.touchUpInside)
         cell.backgroundColor = .red
-        cell.addSubview(editButton)
+        cell.button.addTarget(self, action: #selector(editButtonTapped(button:)), for: .touchUpInside)
         return cell
     }
 }
+
+
 

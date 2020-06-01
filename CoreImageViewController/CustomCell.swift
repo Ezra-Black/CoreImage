@@ -9,20 +9,26 @@
 import UIKit
 
 class CustomCell: UICollectionViewCell {
+    lazy var button: UIButton = {
+            let button = UIButton(type: .system)
+            button.setTitle("Press Me", for: .normal)
+    //        button.backgroundColor = .blue
+            button.translatesAutoresizingMaskIntoConstraints = false
+            button.clipsToBounds = true
+            return button
+        }()
+        override init(frame: CGRect) {
+            super.init(frame: frame)
+            addSubview(button)
+            addConstraints ([
+                // Add to top of view
+                button.leadingAnchor.constraint(equalTo: leadingAnchor),
+                button.trailingAnchor.constraint(equalTo: trailingAnchor),
+                button.topAnchor.constraint(equalTo: topAnchor),
+            ])
+}
     
-//    fileprivate let button: UIButton = {
-//        let buttonToUse = UIButton()
-//        buttonToUse.translatesAutoresizingMaskIntoConstraints = false
-//        buttonToUse.clipsToBounds = true
-//        return buttonToUse
-//    }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init decoder:) has not been implemented")
-    }
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+}
 }
