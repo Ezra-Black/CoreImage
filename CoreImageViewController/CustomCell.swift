@@ -19,10 +19,7 @@ class CustomCell: UICollectionViewCell {
     
     lazy var button: UIButton = {
             let button = UIButton(type: .system)
-        #warning("Is this the logic I should be taking to get the title set?????")
-        DispatchQueue.main.async {
-            button.setTitle(self.title, for: .normal)
-        }
+        #warning("why MUST i set my title here?")
             button.translatesAutoresizingMaskIntoConstraints = false
             button.clipsToBounds = true
             return button

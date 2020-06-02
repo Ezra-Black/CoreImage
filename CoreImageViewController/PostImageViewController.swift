@@ -49,6 +49,13 @@ class PostImageViewController: UIViewController {
         let cellCIVirbrance = CustomCell(title: "Vibrance")
         let cellCIWhitePointAdjust = CustomCell(title: "WhitePoint")
         let cellCISharpenLuminance = CustomCell(title: "Sharpen")
+        #warning("Why cant i set my title here?")
+        cellCIPhotoEffectNoir.button.setTitle("Noir", for: .normal)
+        cellPhotoEffectInstant.button.setTitle("Candid", for: .normal)
+        cellCIVirbrance.button.setTitle("Vibrance", for: .normal)
+        cellCIWhitePointAdjust.button.setTitle("WhitePoint", for: .normal)
+        cellCISharpenLuminance.button.setTitle("Sharpen", for: .normal)
+
         cellsToDisplay.append(cellCIPhotoEffectNoir)
         cellsToDisplay.append(cellPhotoEffectInstant)
         cellsToDisplay.append(cellCIVirbrance)
@@ -60,7 +67,7 @@ class PostImageViewController: UIViewController {
     @objc func editPhotoButtonTapped(button: UIButton) -> Void {
         
         // TODO: get cell for button being tapped by comparing or using a delegate protocol to send a message. Now we will call certain functions for certain scenarios.
-        if button.titleLabel?.text == "Noir" {
+        if button.titleLabel?.text == "Button" {
             print("Noir button tapped")
         } else if button.titleLabel?.text == "Candid" {
             print("Candid button tapped")
