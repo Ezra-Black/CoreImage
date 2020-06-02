@@ -17,9 +17,10 @@ class CustomCell: UICollectionViewCell {
     
     var delegate: ImageCellDelegate?
     
+    var id: Int?
+    
     lazy var button: UIButton = {
             let button = UIButton(type: .system)
-        #warning("why MUST i set my title here?")
             button.translatesAutoresizingMaskIntoConstraints = false
             button.clipsToBounds = true
             return button
@@ -36,7 +37,7 @@ class CustomCell: UICollectionViewCell {
             ])
 }
     
-    convenience init(title: String) {
+    convenience init(title: String, id: Int) {
         self.init()
         addSubview(button)
         addConstraints ([

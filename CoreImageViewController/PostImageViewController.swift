@@ -36,7 +36,6 @@ class PostImageViewController: UIViewController {
         collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40).isActive = true
         collectionView.heightAnchor.constraint(equalTo: collectionView.widthAnchor, multiplier: 0.5).isActive = true
-        
         collectionView.delaysContentTouches = false  // <- Makes buttons always press
         collectionView.isUserInteractionEnabled = true
     }
@@ -44,40 +43,32 @@ class PostImageViewController: UIViewController {
     var cellsToDisplay: [CustomCell] = []
     
     func createFilterCellsArray() {
-        let cellCIPhotoEffectNoir = CustomCell(title: "Noir")
-        let cellPhotoEffectInstant = CustomCell(title: "Candid")
-        let cellCIVirbrance = CustomCell(title: "Vibrance")
-        let cellCIWhitePointAdjust = CustomCell(title: "WhitePoint")
-        let cellCISharpenLuminance = CustomCell(title: "Sharpen")
+        let cellCIPhotoEffectNoir = CustomCell(title: "Noir", id: 0)
+        let cellPhotoEffectInstant = CustomCell(title: "Candid", id: 1)
+        let cellCIVibrance = CustomCell(title: "Vibrance", id: 2)
+        let cellCIWhitePointAdjust = CustomCell(title: "WhitePoint", id: 3)
+        let cellCISharpenLuminance = CustomCell(title: "Sharpen", id: 4)
         #warning("Why cant i set my title here?")
-        cellCIPhotoEffectNoir.button.setTitle("Noir", for: .normal)
-        cellPhotoEffectInstant.button.setTitle("Candid", for: .normal)
-        cellCIVirbrance.button.setTitle("Vibrance", for: .normal)
-        cellCIWhitePointAdjust.button.setTitle("WhitePoint", for: .normal)
-        cellCISharpenLuminance.button.setTitle("Sharpen", for: .normal)
-
         cellsToDisplay.append(cellCIPhotoEffectNoir)
         cellsToDisplay.append(cellPhotoEffectInstant)
-        cellsToDisplay.append(cellCIVirbrance)
+        cellsToDisplay.append(cellCIVibrance)
         cellsToDisplay.append(cellCIWhitePointAdjust)
         cellsToDisplay.append(cellCISharpenLuminance)
         
     }
-    
-    @objc func editPhotoButtonTapped(button: UIButton) -> Void {
+    @objc func noirEffectFunction(button: UIButton) -> Void {
+        print("This is Broken.")
+    }
+    @objc func instantEffectFunction(button: UIButton) -> Void {
         
-        // TODO: get cell for button being tapped by comparing or using a delegate protocol to send a message. Now we will call certain functions for certain scenarios.
-        if button.titleLabel?.text == "Button" {
-            print("Noir button tapped")
-        } else if button.titleLabel?.text == "Candid" {
-            print("Candid button tapped")
-        } else if button.titleLabel?.text == "Vibrance" {
-            print("Vibrance button tapped")
-        } else if button.titleLabel?.text == "WhitePoint" {
-            print("WhitePoint button tapped")
-        } else if button.titleLabel?.text == "Sharpen" {
-            print("Sharpen button tapped")
-        }
+    }
+    @objc func vibranceEffectFunction(button: UIButton) -> Void {
+        
+    }
+    @objc func whiteEffectFunction(button: UIButton) -> Void {
+        
+    }
+    @objc func LuminateEffectFunction(button: UIButton) -> Void {
         
     }
 }
@@ -97,7 +88,47 @@ extension PostImageViewController: UICollectionViewDelegateFlowLayout, UICollect
         cell.delegate = self
         cell.backgroundColor = .red
         cell.contentView.isUserInteractionEnabled = true
-        cell.button.addTarget(self, action: #selector(editPhotoButtonTapped(button:)), for: .touchUpInside)
+////        cell.button.setTitle("eggyWeggy", for: .normal)
+        cell.button.addTarget(self, action: #selector(noirEffectFunction(button:)), for: .touchUpInside)
+        
+        
+        for c in 0..<cellsToDisplay.count {
+
+            #warning("you are accessing the number of items and iterating through them inside of the collectionview. i should probably do this within display.")
+            switch c {
+            case 0:
+                DispatchQueue.main.async {
+                    if cell.id == 0 {
+                     cell.button.setTitle("Noir", for: .normal)
+                    }
+                }
+            case 1:
+                DispatchQueue.main.async {
+                    if cell.id == 1 {
+                     cell.button.setTitle("Candid", for: .normal)
+                    }
+                }
+            case 2:
+                DispatchQueue.main.async {
+                    if cell.id == 2 {
+                    cell.button.setTitle("Vibrance", for: .normal)
+                    }
+                }
+            case 3:
+                DispatchQueue.main.async {
+                     if cell.id == 3 {
+                    cell.button.setTitle("WhitePoint", for: .normal)
+                    }
+                }
+                
+            default:
+                DispatchQueue.main.async {
+                    cell.button.setTitle("Sharpen", for: .normal)
+                }
+            }
+        }
+        
+        
         return cell
     }
 }
