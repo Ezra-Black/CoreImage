@@ -26,21 +26,52 @@ class PostImageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        createFilterCellsArray()
         view.addSubview(collectionView)
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        
         collectionView.backgroundColor = .white
         collectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 40).isActive = true
         collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40).isActive = true
         collectionView.heightAnchor.constraint(equalTo: collectionView.widthAnchor, multiplier: 0.5).isActive = true
-        collectionView.delegate = self
-        collectionView.dataSource = self
+        
         collectionView.delaysContentTouches = false  // <- Makes buttons always press
+        collectionView.isUserInteractionEnabled = true
     }
     
-    @IBAction func editButtonTapped(button: UIButton) -> Void {
+    var cellsToDisplay: [CustomCell] = []
+    
+    func createFilterCellsArray() {
+        let cellCIPhotoEffectNoir = CustomCell(title: "Noir")
+        let cellPhotoEffectInstant = CustomCell(title: "Candid")
+        let cellCIVirbrance = CustomCell(title: "Vibrance")
+        let cellCIWhitePointAdjust = CustomCell(title: "WhitePoint")
+        let cellCISharpenLuminance = CustomCell(title: "Sharpen")
+        cellsToDisplay.append(cellCIPhotoEffectNoir)
+        cellsToDisplay.append(cellPhotoEffectInstant)
+        cellsToDisplay.append(cellCIVirbrance)
+        cellsToDisplay.append(cellCIWhitePointAdjust)
+        cellsToDisplay.append(cellCISharpenLuminance)
         
-        // TODO: get cell for button being tapped by comparing or using a delegate protocol to send a message
-        print("Hello Edit Button")
+    }
+    
+    @objc func editPhotoButtonTapped(button: UIButton) -> Void {
+        
+        // TODO: get cell for button being tapped by comparing or using a delegate protocol to send a message. Now we will call certain functions for certain scenarios.
+        if button.titleLabel?.text == "Noir" {
+            print("Noir button tapped")
+        } else if button.titleLabel?.text == "Candid" {
+            print("Candid button tapped")
+        } else if button.titleLabel?.text == "Vibrance" {
+            print("Vibrance button tapped")
+        } else if button.titleLabel?.text == "WhitePoint" {
+            print("WhitePoint button tapped")
+        } else if button.titleLabel?.text == "Sharpen" {
+            print("Sharpen button tapped")
+        }
+        
     }
 }
 
@@ -51,14 +82,22 @@ extension PostImageViewController: UICollectionViewDelegateFlowLayout, UICollect
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        return cellsToDisplay.count
     }
-    
+    //make your cells first.
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Filtercell", for: indexPath) as! CustomCell
+        cell.delegate = self
         cell.backgroundColor = .red
-        cell.button.addTarget(self, action: #selector(editButtonTapped(button:)), for: .touchUpInside)
+        cell.contentView.isUserInteractionEnabled = true
+        cell.button.addTarget(self, action: #selector(editPhotoButtonTapped(button:)), for: .touchUpInside)
         return cell
+    }
+}
+
+extension PostImageViewController: ImageCellDelegate {
+    func didTapButtonInside(cell: CustomCell) {
+        
     }
 }
 

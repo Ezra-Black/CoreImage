@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol ImageCustomCollectionCellDelegate {
+protocol ImageCellDelegate {
     func didTapButtonInside(cell: CustomCell)
 }
 
