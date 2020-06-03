@@ -16,6 +16,18 @@ class PostImageViewController: UIViewController {
     //MARK: Properties -
     
     private var originalImage : UIImage? {
+         didSet {
+                   guard let originalImage = originalImage else {
+                       scaledImage = nil
+                       return
+                   }
+                   var scaledSize = photoImageView.bounds.size
+                   let scale = UIScreen.main.scale
+                   scaledSize = CGSize(width: scaledSize.width * scale, height: scaledSize.height * scale)
+                   scaledImage = originalImage.imageByScaling(toSize: scaledSize)
+               }
+    }
+    private var scaledImage: UIImage? {
         didSet {
             updateViews()
         }
@@ -83,7 +95,7 @@ class PostImageViewController: UIViewController {
         guard let outputCIImage = filter.outputImage else { return nil }
         guard let outputCGIImage = context.createCGImage(outputCIImage,
                                                          from: CGRect(origin: .zero,
-                                                                      size: originalImage!.size)) else {
+                                                                      size: scaledImage!.size)) else {
                                                                         return nil }
         return UIImage(cgImage: outputCGIImage)
     }
