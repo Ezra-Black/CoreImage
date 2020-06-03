@@ -16,17 +16,20 @@ class PostImageViewController: UIViewController {
     //MARK: Properties -
     
     private var originalImage : UIImage? {
-         didSet {
+       didSet {
+                   // 414 * 3 = 1,242 pixels (portrait on iPhone 11 Pro Max)
                    guard let originalImage = originalImage else {
-                       scaledImage = nil
+                       scaledImage = nil // clear out image if set to nil
                        return
                    }
+                   
                    var scaledSize = photoImageView.bounds.size
                    let scale = UIScreen.main.scale
                    scaledSize = CGSize(width: scaledSize.width * scale, height: scaledSize.height * scale)
                    scaledImage = originalImage.imageByScaling(toSize: scaledSize)
-               }
+        }
     }
+    
     private var scaledImage: UIImage? {
         didSet {
             updateViews()
@@ -64,7 +67,8 @@ class PostImageViewController: UIViewController {
     
     //MARK: Lifecycle
     override func viewDidLoad() {
-        super.viewDidLoad()
+      super.viewDidLoad()
+        
         let filter1 = CIFilter.colorMonochrome()
         filter1.intensity = 1
         print(filter1.attributes)
@@ -72,11 +76,13 @@ class PostImageViewController: UIViewController {
     }
     
     func updateViews() {
-        if let originalImage = originalImage {
-            photoImageView.image = filterImage(originalImage)
-        } else {
-            photoImageView.image = UIImage(named: "selfie")
-        }
+//        if let originalImage = originalImage {
+//            photoImageView.image = filterImage(originalImage)
+//        } else {
+//            photoImageView.image = UIImage(named: "selfie")
+//        }
+        guard let scaledImage = scaledImage else { return }
+              photoImageView.image = filterImage(scaledImage)
     }
     
     //MARK: Methods -
@@ -87,7 +93,6 @@ class PostImageViewController: UIViewController {
         
         guard let cgImage = image.cgImage else { return nil }
         let ciImage = CIImage(cgImage: cgImage)
-        
         let filter = CIFilter.colorMonochrome()
         filter.inputImage = ciImage
         filter.intensity = slider1.value
@@ -95,7 +100,7 @@ class PostImageViewController: UIViewController {
         guard let outputCIImage = filter.outputImage else { return nil }
         guard let outputCGIImage = context.createCGImage(outputCIImage,
                                                          from: CGRect(origin: .zero,
-                                                                      size: scaledImage!.size)) else {
+                                                                      size: originalImage!.size)) else {
                                                                         return nil }
         return UIImage(cgImage: outputCGIImage)
     }
