@@ -15,8 +15,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="bDU-eH-3cg">
-                                <rect key="frame" x="0.0" y="89" width="414" height="323.5"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bDU-eH-3cg">
+                                <rect key="frame" x="0.0" y="88" width="414" height="326"/>
                             </imageView>
                             <stackView verifyAmbiguity="off" opaque="NO" contentMode="scaleToFill" spacing="21" id="thc-s5-krs">
                                 <rect key="frame" x="8" y="494" width="398" height="30"/>
@@ -122,7 +122,7 @@
                         <viewLayoutGuide key="safeArea" id="mBn-Ib-9fn"/>
                     </view>
                     <navigationItem key="navigationItem" id="ODX-su-KmW">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="pz4-kR-aGU">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="pz4-kR-aGU">
                             <connections>
                                 <action selector="addPhotoButtonPressed:" destination="O5p-fM-xUd" id="FaV-er-wWJ"/>
                             </connections>
@@ -162,7 +162,4 @@
             <point key="canvasLocation" x="153.62318840579712" y="188.83928571428569"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="photo" catalog="system" width="128" height="93"/>
-    </resources>
 </document>

@@ -85,15 +85,15 @@ class PostImageViewController: UIViewController {
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+//
 //        let guassianFilter = CIFilter.gaussianBlur()
 //        let colorControlsFilter = CIFilter.colorControls()
 //        let twirlFilter = CIFilter.hueAdjust()
-        //        filter1.intensity = 1
-        //        print(filter1.attributes)
+//
         originalImage = photoImageView.image
         slider5.minimumValue = -3.141592653589793
         slider5.maximumValue = 3.141592653589793
+        resetValues()
     }
     
     func updateViews() {
@@ -143,8 +143,7 @@ class PostImageViewController: UIViewController {
         
         guard let outputCIImage = hueFilter.outputImage else { return nil }
         guard let outputCGIImage = context.createCGImage(outputCIImage,
-                                                         from: CGRect(origin: .zero,
-                                                                      size: originalImage!.size)) else {
+                                                         from: outputCIImage.extent) else {
                                                                         return nil }
         return UIImage(cgImage: outputCGIImage)
     }
@@ -156,16 +155,15 @@ class PostImageViewController: UIViewController {
         let imagePicker = UIImagePickerController()
         imagePicker.sourceType = .photoLibrary
         imagePicker.delegate = self
-        
         present(imagePicker, animated: true)
     }
     
     
-    @IBAction func resetValues(_ sender: Any) {
-           resetValues()
+    private func resetValues() {
+           identityValues()
        }
        
-       private func resetValues() {
+       private func identityValues() {
            slider1.value = 0
            slider2.value = 0
            slider3.value = 1
@@ -202,6 +200,8 @@ extension PostImageViewController: UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[.originalImage] as? UIImage {
             originalImage = image
+            photoImageView.image = originalImage
+            resetValues()
         }
         resetValues()
         picker.dismiss(animated: true)
