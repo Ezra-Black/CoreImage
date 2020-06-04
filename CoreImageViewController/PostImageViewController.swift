@@ -164,11 +164,11 @@ class PostImageViewController: UIViewController {
        }
        
        private func identityValues() {
-           slider1.value = 0
-           slider2.value = 0
-           slider3.value = 1
-           slider4.value = 1
-           slider5.value = 0
+        slider1.value = 0.5
+        slider2.value = 0.5
+        slider3.value = 0.5
+        slider4.value = 0.5
+        slider5.value = 0.5
        }
     
     private func savePhoto() {
